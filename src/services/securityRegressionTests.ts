@@ -17,8 +17,7 @@
  */
 
 import { supabase } from '@/lib/supabase';
-import { recordStockMovement, createWarehouseItem, updateWarehouseItem } from './warehouseService';
-import { updateProfileRole, getAuditLogs } from './adminService';
+import { recordStockMovement, createWarehouseItem } from './warehouseService';
 import type { UserRole } from '@/types/database';
 
 interface TestResult {
@@ -125,7 +124,7 @@ async function testStockInsufficiency(): Promise<boolean> {
       if (err instanceof Error && /insufficient|negative|stock/i.test(err.message)) {
         return true;
       }
-      throw new Error(`Unexpected error: ${err.message}`);
+      throw new Error(`Unexpected error: ${err instanceof Error ? err.message : String(err)}`);
     }
   } finally {
     // Clean up

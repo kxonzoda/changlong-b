@@ -52,7 +52,7 @@ export async function getEquipmentEvents(equipmentId?: string, days = 30): Promi
     .gte('event_time', startTime.toISOString())
     .order('event_time', { ascending: false });
   if (equipmentId) query = query.eq('equipment_id', equipmentId);
-  const { data, error } = query.limit(100);
+  const { data, error } = await query.limit(100);
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }
@@ -67,7 +67,7 @@ export async function getEquipmentOperatingHours(equipmentId?: string, days = 30
     .gte('record_date', dateStr)
     .order('record_date', { ascending: false });
   if (equipmentId) query = query.eq('equipment_id', equipmentId);
-  const { data, error } = query;
+  const { data, error } = await query;
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }

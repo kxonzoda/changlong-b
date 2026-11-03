@@ -79,7 +79,7 @@ export async function getEquipmentDowntime(equipmentId?: string, days = 30): Pro
     .gte('start_time', startTime.toISOString())
     .order('start_time', { ascending: false });
   if (equipmentId) query = query.eq('equipment_id', equipmentId);
-  const { data, error } = query;
+  const { data, error } = await query;
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }

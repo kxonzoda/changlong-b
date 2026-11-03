@@ -59,7 +59,7 @@ export async function getLaboratoryResults(batchId?: string, limit = 50): Promis
     .order('test_date', { ascending: false })
     .limit(limit);
   if (batchId) query = query.eq('batch_id', batchId);
-  const { data, error } = query;
+  const { data, error } = await query;
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }

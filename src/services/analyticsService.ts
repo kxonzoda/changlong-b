@@ -64,7 +64,7 @@ export async function getEnergyIntensity(days = 30): Promise<number> {
   if (prodRes.error) throw ServiceError.fromSupabaseError(prodRes.error);
 
   const totalKwh = (energyRes.data ?? [])
-    .filter((r) => (r as { meter: { energy_type: string } | null }).meter?.energy_type === 'electricity')
+    .filter((r) => (r as unknown as { meter: { energy_type: string } | null }).meter?.energy_type === 'electricity')
     .reduce((s, r) => s + (Number(r.total_value) || 0), 0);
 
   const totalOutputKg = (prodRes.data ?? []).reduce((s, r) => s + (Number(r.output_weight_kg) || 0), 0);
@@ -99,7 +99,7 @@ export async function getEquipmentDowntimeByEquipment(equipmentId?: string, days
 
   const byEquipment = new Map<string, { equipment_id: string; equipment_code: string; equipment_name: string; total_downtime_hours: number; downtime_count: number }>();
   for (const row of data ?? []) {
-    const eq = row.equipment as { id: string; equipment_code: string; name: string } | null;
+    const eq = row.equipment as unknown as { id: string; equipment_code: string; name: string } | null;
     if (!eq) continue;
     const existing = byEquipment.get(row.equipment_id) ?? {
       equipment_id: row.equipment_id,

@@ -115,7 +115,7 @@ export async function getWorkforceAssignments(employeeId?: string): Promise<Work
     .select('*')
     .order('start_date', { ascending: false });
   if (employeeId) query = query.eq('employee_id', employeeId);
-  const { data, error } = query;
+  const { data, error } = await query;
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }
@@ -212,7 +212,7 @@ export async function getEmployeeShifts(employeeId?: string): Promise<EmployeeSh
     .select('*')
     .order('effective_date', { ascending: false });
   if (employeeId) query = query.eq('employee_id', employeeId);
-  const { data, error } = query;
+  const { data, error } = await query;
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }

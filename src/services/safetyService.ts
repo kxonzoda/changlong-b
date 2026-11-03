@@ -67,7 +67,7 @@ export async function getSafetyTrainingRecords(limit = 50): Promise<SafetyTraini
 export async function getCorrectiveActions(incidentId?: string): Promise<CorrectiveAction[]> {
   let query = supabase.from('corrective_actions').select('*').order('created_at', { ascending: false });
   if (incidentId) query = query.eq('incident_id', incidentId);
-  const { data, error } = query;
+  const { data, error } = await query;
   if (error) throw ServiceError.fromSupabaseError(error);
   return data ?? [];
 }
