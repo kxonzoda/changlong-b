@@ -1,3 +1,4 @@
+// CHANGLONG INTELLIGENCE Edge Function
 // Rate limiting should be implemented at the API gateway / Supabase project settings level.
 // Supabase does not support per-function rate limiting natively.
 import { createClient } from "npm:@supabase/supabase-js@2.57.4";
