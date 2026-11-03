@@ -21,3 +21,4 @@ entrypoint = "./functions/generate-operational-report/index.ts"
 [functions.iot-ingestion]
 verify_jwt = false
 entrypoint = "./functions/iot-ingestion/index.ts"
+
