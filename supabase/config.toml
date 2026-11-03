@@ -1,0 +1,23 @@
+[functions.ai-analyst]
+verify_jwt = true
+entrypoint = "./functions/ai-analyst/index.ts"
+
+[functions.energy-analysis]
+verify_jwt = true
+entrypoint = "./functions/energy-analysis/index.ts"
+
+[functions.production-insights]
+verify_jwt = true
+entrypoint = "./functions/production-insights/index.ts"
+
+[functions.equipment-anomaly-analysis]
+verify_jwt = true
+entrypoint = "./functions/equipment-anomaly-analysis/index.ts"
+
+[functions.generate-operational-report]
+verify_jwt = true
+entrypoint = "./functions/generate-operational-report/index.ts"
+
+[functions.iot-ingestion]
+verify_jwt = false
+entrypoint = "./functions/iot-ingestion/index.ts"
